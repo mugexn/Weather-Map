@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { min-height: 100%; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; }
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl backdrop-saturate-150 border border-white/20 rounded-3xl
+           shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.25)];
+  }
+  .glass-tile {
+    @apply bg-white/10 border border-white/15 rounded-2xl backdrop-blur-md transition duration-300
+           hover:bg-white/20 hover:-translate-y-0.5;
+  }
+  .chip { @apply px-3 py-1.5 rounded-full text-sm border border-white/20 bg-white/10 hover:bg-white/20 transition; }
+  .chip-active { @apply bg-white text-slate-900 border-white hover:bg-white; }
+}
+
+.fade-up { animation: fadeUp .6s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.leaflet-container { border-radius: 1.5rem; font-family: inherit; }
+
+/* Dark mode: invert only the base map. The weather overlay sits in its own pane, so its colors stay correct. */
+.dark .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.7);
+}
